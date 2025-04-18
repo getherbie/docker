@@ -10,8 +10,8 @@ Create image
 
 Run website
 
-    docker run --rm -v $(pwd):/app -p 8888:80 herbie
-    docker run --rm -v $(pwd):/app -p 8888:80 herbie
+    docker run --rm -v $(pwd):/app -p 8888:8888 herbie
+    docker run --rm -v $(pwd):/app -p 8888:8888 herbie
 
 Install packages
 
