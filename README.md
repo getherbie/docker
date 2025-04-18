@@ -46,9 +46,17 @@ Install packages
 
     docker run --rm -it -v .:/app herbie composer install
 
+Run website
+
+    docker run --rm -v .:/app -p 8888:8888 herbie php -S 0.0.0.0:8888 -t /app/website/web
+
 Run tests
 
     docker run --rm -it -v .:/app herbie composer test
+
+Run test website
+
+    docker run --rm -v .:/app -p 8888:8888 herbie php -S 0.0.0.0:8888 -t /app/tests/_data/web
 
 Run bash shell
 
