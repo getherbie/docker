@@ -6,7 +6,6 @@ FROM php:$PHP_VERSION-cli AS base
 
 FROM base AS composer
 COPY --from=composer:lts /usr/bin/composer /usr/bin/composer
-ENTRYPOINT ["composer", "--version"]
 
 
 FROM base AS builder
@@ -42,13 +41,13 @@ COPY --from=builder /usr/local/lib/php/extensions/* /usr/local/lib/php/extension
 COPY --from=builder /usr/local/etc/php/conf.d/* /usr/local/lib/php/conf.d
 RUN cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini
 
-
 RUN groupadd -g 1000 herbie && useradd -m -u 1000 -g herbie herbie
 RUN mkdir /app  && chown -R herbie:herbie /app
 USER herbie
- 
+
 WORKDIR /app
 VOLUME /app
 
 EXPOSE 8888
+
 CMD ["php", "-S", "0.0.0.0:8888", "-t", "/app/web"]
