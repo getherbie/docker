@@ -1,16 +1,22 @@
-# Docker
+# Docker Image for Herbie CMS
 
-Simple Docker image for Herbie CMS using PHP's built-in web server.
+Minimal Docker image for Herbie CMS using PHP's built-in web server.
 
-## Create Image
+## Supported PHP Versions
 
-Create docker image
+8.0 / 8.1 / 8.2 / 8.3 (latest)
+
+## Build Docker Image
+
+Create Docker image based on the latest supported PHP version
 
     docker build -t herbie https://github.com/getherbie/docker.git
 
-You can use different PHP versions, too
+Optionally you can also use an older PHP version
 
-    PHP_VERSION=8.0 docker build -t herbie:php8.0 https://github.com/getherbie/docker.git
+    docker build --build-arg PHP_VERSION=8.0 -t herbie https://github.com/getherbie/docker.git
+    docker build --build-arg PHP_VERSION=8.1 -t herbie https://github.com/getherbie/docker.git
+    docker build --build-arg PHP_VERSION=8.2 -t herbie https://github.com/getherbie/docker.git
 
 ## Website Starter
 
