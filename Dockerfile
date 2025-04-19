@@ -21,7 +21,7 @@ RUN pecl channel-update pecl.php.net \
     && pecl install xdebug \
     && docker-php-ext-enable xdebug
 
-RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
+RUN cp "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
