@@ -61,3 +61,34 @@ Run test website
 Run bash shell
 
     docker run --rm -it -v .:/app herbie bash
+
+### Step Debugging
+
+In Visual Studio Code, install the extension `xdebug.php-debug` and add the following configuration to `.vscode/launch.json`
+
+    {
+        "version": "0.2.0",
+        "configurations": [
+            {
+                "name": "Docker Xdebug",
+                "type": "php",
+                "request": "launch",
+                "port": 9003,
+                "pathMappings": {
+                    "/app/": "${workspaceRoot}/"
+                }
+            }
+        ]
+    }
+
+Run website
+
+    docker run --rm \
+        -e XDEBUG_CONFIG="client_host=172.17.0.1" \
+        -e XDEBUG_MODE=debug \
+        -e XDEBUG_SESSION_START=true \
+        -p 8888:8888 \
+        -v .:/app \
+        herbie php -S 0.0.0.0:8888 -t /app/website/web
+
+Start debugging in Visual Studio Code
