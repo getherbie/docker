@@ -6,7 +6,7 @@ Minimal Docker image for Herbie CMS using PHP's built-in web server.
 
 8.0 / 8.1 / 8.2 / 8.3 (latest)
 
-## Build Docker Image
+## Create Docker Image
 
 Create Docker image based on the latest supported PHP version
 
@@ -18,7 +18,7 @@ Optionally you can also use an older PHP version
     docker build --build-arg PHP_VERSION=8.1 -t herbie https://github.com/getherbie/docker.git
     docker build --build-arg PHP_VERSION=8.2 -t herbie https://github.com/getherbie/docker.git
 
-## Website Starter
+## Create New Website
 
 Create new website und install packages
 
@@ -33,6 +33,8 @@ Run website
     docker run --rm -v .:/app -p 8888:8888 herbie
 
 ## Development Environment
+
+### Run Website
 
 Clone project
 
@@ -50,6 +52,12 @@ Run website
 
     docker run --rm -v .:/app -p 8888:8888 herbie php -S 0.0.0.0:8888 -t /app/website/web
 
+### Run Bash Shell
+
+    docker run --rm -it -v .:/app herbie bash
+
+### Run Tests
+
 Run tests
 
     docker run --rm -it -v .:/app herbie composer test
@@ -57,10 +65,6 @@ Run tests
 Run test website
 
     docker run --rm -v .:/app -p 8888:8888 herbie php -S 0.0.0.0:8888 -t /app/tests/_data/web
-
-Run bash shell
-
-    docker run --rm -it -v .:/app herbie bash
 
 ### Step Debugging
 
